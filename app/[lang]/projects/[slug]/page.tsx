@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -9,6 +10,8 @@ import Section from "@/components/Section";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
 import { localizePath } from "@/lib/i18n";
 import { projects } from "@/lib/projects";
+import { alternatesFor, openGraphFor } from "@/lib/seo";
+import { siteName } from "@/lib/site";
 
 // Ruta dinámica: [slug] en el nombre de la carpeta captura esa parte de la URL.
 // /en/projects/imeet → params.slug === "imeet". Un solo archivo para todos.
@@ -20,6 +23,27 @@ export function generateStaticParams() {
 }
 
 type Params = PageProps<"/[lang]/projects/[slug]">["params"];
+
+// Cada caso de estudio lleva su propio título y descripción (el resumen del proyecto), su canonical
+// y sus versiones por idioma. Un slug que no existe no devuelve nada: la página dará 404.
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+  const { slug } = await params;
+  const project = projects.find((candidate) => candidate.slug === slug);
+  if (!project) return { robots: { index: false } }; // la página dará 404: que no se indexe
+
+  const locale = await getLocale();
+  const dictionary = await getDictionary();
+  const text = dictionary.projects[project.slug];
+  const title = `${text.title} | ${siteName}`;
+  // El resumen más las tecnologías: quien busca por tecnología encuentra el proyecto.
+  const description = `${text.summary} Stack: ${project.stack.slice(0, 5).join(", ")}.`;
+  return {
+    title,
+    description,
+    alternates: alternatesFor(locale, `/projects/${project.slug}`),
+    openGraph: openGraphFor(locale, title, description, `/projects/${project.slug}`),
+  };
+}
 
 // Con cacheComponents + partialPrefetching (next.config.ts), leer `params` es leer datos
 // de la URL: Next pide hacerlo dentro de <Suspense> para que la navegación no se bloquee.

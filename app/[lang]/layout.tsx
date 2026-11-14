@@ -1,8 +1,11 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 // import { Geist, Geist_Mono } from "next/font/google";
 import Nav from "@/components/Nav";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
-import { locales } from "@/lib/i18n";
+import { locales, type Locale } from "@/lib/i18n";
+import { contact, skills } from "@/lib/profile";
+import { openGraphFor } from "@/lib/seo";
+import { siteName, siteUrl } from "@/lib/site";
 import { themeInitScript } from "@/lib/theme";
 import "../globals.css";
 
@@ -22,11 +25,16 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ lang: locale }));
 }
 
-// Dirección pública de la web (para que og:image sea una URL absoluta al compartir el enlace).
-// Define NEXT_PUBLIC_SITE_URL al desplegar (por ejemplo https://tudominio.dev); sin ella usa
-// localhost, que sirve para desarrollar pero no para que lo vea LinkedIn.
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+// Color de la barra del navegador en el móvil: el fondo del tema claro u oscuro.
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0f0b10" },
+  ],
+};
 
+// Metadatos comunes a todas las páginas. El canonical y las versiones por idioma (hreflang) NO van
+// aquí sino en cada página (ver lib/seo.ts): en el layout las heredarían las páginas hijas.
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
   const dictionary = await getDictionary();
@@ -34,18 +42,44 @@ export async function generateMetadata(): Promise<Metadata> {
     metadataBase: new URL(siteUrl),
     title: dictionary.meta.title,
     description: dictionary.meta.description,
-    // Etiquetas para las vistas previas al compartir. La imagen sale de opengraph-image.tsx.
-    openGraph: {
-      type: "website",
-      siteName: "Carlos Marquina",
-      title: dictionary.meta.title,
-      description: dictionary.meta.description,
-      locale: locale === "es" ? "es_ES" : "en_US",
-    },
+    openGraph: openGraphFor(locale, dictionary.meta.title, dictionary.meta.description),
     twitter: { card: "summary_large_image" },
-    // Le dice a los buscadores que cada idioma tiene su versión (hreflang).
-    alternates: { languages: Object.fromEntries(locales.map((code) => [code, `/${code}`])) },
   };
+}
+
+// Datos estructurados (JSON-LD): le dicen a Google, de forma explícita, qué es esta web, quién eres,
+// dónde estás y qué perfiles son tuyos (esos enlaces ayudan a que tu nombre se asocie con la web).
+// Dos entidades enlazadas por @id: la web (WebSite) y tú (Person, su autor). Solo hechos que ya
+// están en la web. Se reemplaza "<" para que el texto nunca pueda cerrar la etiqueta <script>.
+function structuredData(locale: Locale, jobTitle: string, description: string) {
+  const personId = `${siteUrl}/#person`;
+  return JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": `${siteUrl}/#website`,
+        url: `${siteUrl}/${locale}`,
+        name: siteName,
+        inLanguage: locale,
+        author: { "@id": personId },
+      },
+      {
+        "@type": "Person",
+        "@id": personId,
+        name: siteName,
+        url: `${siteUrl}/${locale}`,
+        jobTitle,
+        description,
+        email: contact.email,
+        address: { "@type": "PostalAddress", addressLocality: "Barcelona", addressCountry: "ES" },
+        alumniOf: { "@type": "EducationalOrganization", name: "MigraCode Barcelona" },
+        knowsAbout: skills.flatMap((group) => [...group.items]),
+        knowsLanguage: ["es", "en"],
+        sameAs: [contact.github, contact.linkedin],
+      },
+    ],
+  }).replace(/</g, "\\u003c");
 }
 
 export default async function RootLayout({ children }: LayoutProps<"/[lang]">) {
@@ -63,6 +97,12 @@ export default async function RootLayout({ children }: LayoutProps<"/[lang]">) {
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: structuredData(locale, dictionary.home.intro.role, dictionary.meta.description),
+          }}
+        />
       </head>
       <body className="min-h-full flex flex-col">
         {/* El nav vive en el layout: no se vuelve a montar al navegar y queda fijo

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import AccentList from "@/components/AccentList";
@@ -11,6 +12,7 @@ import Section from "@/components/Section";
 import SectionLink from "@/components/SectionLink";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
 import { localizePath } from "@/lib/i18n";
+import { alternatesFor } from "@/lib/seo";
 import { contact, cvFiles, skills, whatsappLink } from "@/lib/profile";
 import { projects } from "@/lib/projects";
 
@@ -18,6 +20,12 @@ import { projects } from "@/lib/projects";
 // encoge; en escritorio ancho (lg), un ancho fijo para que quepan dos juntos.
 const workflowBlockClassName =
   "flex w-[calc(100vw-2*var(--section-gutter))] shrink-0 flex-col gap-6 lg:w-[34rem]";
+
+// Canonical y versiones por idioma de la home (ver lib/seo.ts). El título y la descripción vienen
+// del layout.
+export async function generateMetadata(): Promise<Metadata> {
+  return { alternates: alternatesFor(await getLocale(), "") };
+}
 
 // La home es el portafolio breve: seis secciones seguidas en el mismo pergamino.
 // El id de cada <Section> es el destino del sub-menú del nav (ver `sectionIds` de la ruta
@@ -33,7 +41,7 @@ export default async function Home() {
       <Section id="intro" className="flex flex-col justify-center">
         <Image
           src="/carlos-marquina-profile-picture-old.png"
-          alt="Carlos Marquina"
+          alt={home.intro.photoAlt}
           width={400}
           height={400}
           priority

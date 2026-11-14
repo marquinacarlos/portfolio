@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Carlos Marquina | Junior Full-Stack Developer",
-    "description": "Junior Full-Stack Developer open to roles in Barcelona and across Spain. Tech Lead of a team of 4, language-agnostic, strong on teamwork and clear communication."
+    "title": "Carlos Marquina | Junior Full-Stack Developer in Barcelona",
+    "description": "Carlos Marquina, junior full stack developer in Barcelona: frontend and backend with React, Node.js, PostgreSQL and Python. Tech Lead of a team of 4."
   },
   "nav": {
     "label": "Main navigation",
@@ -55,7 +55,8 @@
         "title": "Download my CV",
         "hint": "Choose a language",
         "close": "Close"
-      }
+      },
+      "photoAlt": "Carlos Marquina, junior full-stack developer"
     },
     "workflow": {
       "title": "Workflow",

@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Carlos Marquina | Desarrollador Full-Stack Junior",
-    "description": "Desarrollador Full-Stack Junior abierto a puestos en Barcelona y toda España. Tech Lead de un equipo de 4, agnóstico al lenguaje, con foco en el trabajo en equipo y la comunicación clara."
+    "title": "Carlos Marquina | Desarrollador Full Stack Junior, Barcelona",
+    "description": "Carlos Marquina, desarrollador full stack junior en Barcelona: frontend y backend con React, Node.js, PostgreSQL y Python. Tech Lead de un equipo de 4."
   },
   "nav": {
     "label": "Navegación principal",
@@ -55,7 +55,8 @@
         "title": "Descargar mi CV",
         "hint": "Elige un idioma",
         "close": "Cerrar"
-      }
+      },
+      "photoAlt": "Carlos Marquina, desarrollador full-stack junior"
     },
     "workflow": {
       "title": "Flujo de trabajo",
