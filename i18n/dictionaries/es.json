@@ -1,0 +1,332 @@
+{
+  "meta": {
+    "title": "Carlos Marquina | Desarrollador Full-Stack Junior",
+    "description": "Desarrollador Full-Stack Junior abierto a puestos en Barcelona y toda España. Tech Lead de un equipo de 4, agnóstico al lenguaje, con foco en el trabajo en equipo y la comunicación clara."
+  },
+  "nav": {
+    "label": "Navegación principal",
+    "sectionsLabel": "Secciones de esta página",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "backTo": "Volver a",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "toggleSections": "mostrar u ocultar secciones",
+    "routes": {
+      "portfolio": "Portafolio",
+      "blog": "Blog",
+      "services": "Servicios"
+    },
+    "sections": {
+      "intro": "Inicio",
+      "workflow": "Flujo de trabajo",
+      "projects": "Proyectos",
+      "stack": "Stack",
+      "path": "Formación",
+      "contact": "Contacto"
+    },
+    "contact": "Contacto",
+    "breadcrumbs": "Dónde estás"
+  },
+  "controls": {
+    "language": "Idioma",
+    "theme": {
+      "label": "Tema",
+      "light": "Claro",
+      "dark": "Oscuro",
+      "system": "Sistema"
+    }
+  },
+  "home": {
+    "intro": {
+      "greeting": "Hola, soy",
+      "role": "Desarrollador Full-Stack Junior",
+      "pitch": "Busco contribuir en entornos profesionales donde el cambio se mida frente a requisitos de un cliente y tenga impacto real.",
+      "proof": {
+        "before": "Tech Lead de un equipo de 4 miembros donde desarrollamos ",
+        "link": "IMeet",
+        "after": ", una app full-stack desplegada"
+      },
+      "availability": "Abierto a puestos junior · Barcelona y toda España",
+      "contactMe": "Contáctame",
+      "downloadCv": "Descargar CV",
+      "scrollHint": "Desplázate o desliza para ver más...",
+      "cvModal": {
+        "title": "Descargar mi CV",
+        "hint": "Elige un idioma",
+        "close": "Cerrar"
+      }
+    },
+    "workflow": {
+      "title": "Flujo de trabajo",
+      "secondTitle": "En equipo",
+      "items": [
+        {
+          "title": "Pensamiento",
+          "text": "Los lenguajes y la IA son herramientas que usadas con criterio de desarrollo e ingenio, puedo trabajar con cualquiera de ellas."
+        },
+        {
+          "title": "Antes de la arquitectura",
+          "text": "Organizo ideas y requerimientos antes de decidir la arquitectura del proyecto."
+        },
+        {
+          "title": "Test errado, feature desaprobado",
+          "text": "Aplico TDD a lo primordial e indispensable: esas funcionalidades no se aprueban hasta que pasan sus tests."
+        },
+        {
+          "title": "Comunicación",
+          "text": "Como Tech Lead hice de la comunicación clara, dentro del equipo y con la organización, una prioridad."
+        },
+        {
+          "title": "Metodologías ágiles: sprints y tickets",
+          "text": "Uso las funcionalidades de GitHub Projects: milestones para definir deadlines y sprints, e issues como tickets o tareas para delegar y repartir el trabajo al equipo."
+        },
+        {
+          "title": "La prueba: un stack que nadie conocía",
+          "text": "En IMeet, liderando un equipo de 4, elegimos Python y FastAPI, fuera de nuestro stack habitual, para demostrar que los conceptos y el criterio bastan para adaptarse. Resultado: una app full-stack desplegada."
+        }
+      ]
+    },
+    "projects": {
+      "title": "Proyectos"
+    },
+    "stack": {
+      "title": "Stack",
+      "categories": {
+        "frontend": "Frontend",
+        "backend": "Backend",
+        "tools": "Herramientas"
+      }
+    },
+    "path": {
+      "title": "Formación",
+      "items": [
+        {
+          "title": "Desarrollador Web Full-stack (certificado), MigraCode Barcelona",
+          "period": "Octubre 2025 - Julio 2026"
+        },
+        {
+          "title": "Técnico Superior en Desarrollo y Diseño Web, Escuela Da Vinci (Argentina)",
+          "period": "Agosto 2022 - actualidad"
+        },
+        {
+          "title": "Platzi, formación online en tecnología y programación",
+          "period": "2023 - actualidad"
+        }
+      ]
+    },
+    "contact": {
+      "title": "Contacto",
+      "text": "¿Buscas a un desarrollador junior o tienes un proyecto en mente? Me encantaría saber de ti.",
+      "location": "Barcelona, España",
+      "emailCta": "Escríbeme un correo",
+      "whatsapp": {
+        "lead": "¿Prefieres no redactar nada? Ahórrate ese trabajo:",
+        "cta": "Escríbeme por WhatsApp",
+        "message": "Hola Carlos, vi tu portafolio y me gustaría hablar contigo."
+      },
+      "copy": {
+        "label": "Copiar correo al portapapeles",
+        "done": "Copiado al portapapeles"
+      }
+    }
+  },
+  "caseStudy": {
+    "label": "Caso de estudio",
+    "inDevelopment": "En desarrollo",
+    "liveDemo": "Ver demo",
+    "sourceCode": "Código fuente",
+    "whatIDid": "Qué hice",
+    "result": "Resultado",
+    "previousProject": "Proyecto anterior",
+    "nextProject": "Siguiente proyecto",
+    "contactCta": "¿Te interesa? Hablemos",
+    "keepExploring": "Sigue explorando"
+  },
+  "projects": {
+    "imeet": {
+      "title": "IMeet",
+      "summary": "Plataforma que conecta mentores y estudiantes; cada reserva crea la sesión de Meet automáticamente.",
+      "description": "Proyecto final del bootcamp de MigraCode. Tech Lead de un equipo de 4: lideré al grupo desde la arquitectura hasta el despliegue, construí el backend con Python, FastAPI y PostgreSQL, y lo conecté con Google Calendar y Meet para que cada reserva cree la sesión automáticamente. Descontinuado; vuelto a desplegar como demo.",
+      "role": "Tech Lead de un equipo de 4",
+      "date": "Junio 2026 - Julio 2026",
+      "highlights": [
+        {
+          "title": "Liderar el equipo",
+          "decision": "Lideré a un equipo de 4 desde la arquitectura hasta el despliegue para conectar mentores y estudiantes, con React porque el equipo ya lo conocía.",
+          "result": "Demo desplegada en Netlify y Railway."
+        },
+        {
+          "title": "Proceso del equipo",
+          "decision": "Organicé el trabajo con GitHub Projects: milestones, sprints e issues como tickets, para mantener clara la comunicación dentro del equipo y con la organización.",
+          "result": "Un plan visible para todo el equipo: milestones, sprints y tickets en un solo sitio."
+        },
+        {
+          "title": "Backend",
+          "decision": "Construí el backend con Python, FastAPI y SQLAlchemy, con PostgreSQL (Supabase) para los datos relacionales, y lo probé con Pytest.",
+          "result": "Una API probada que gestiona usuarios, roles, franjas horarias y reservas."
+        },
+        {
+          "title": "Un stack nuevo",
+          "decision": "Adapté mis conocimientos de Express y Node a Python y FastAPI, un stack que el equipo eligió a propósito y que nadie conocía.",
+          "result": "Un backend funcional para la demo desplegada, hecho para demostrar que los conceptos de desarrollo sirven en cualquier lenguaje."
+        },
+        {
+          "title": "Integraciones",
+          "decision": "Integré el inicio de sesión con Google y la sincronización con Calendar/Meet como servicios opcionales, por rapidez.",
+          "result": "Una reserva crea automáticamente el evento de Calendar con un enlace de Meet."
+        }
+      ]
+    },
+    "minitweet": {
+      "title": "Minitweet",
+      "summary": "Red social inspirada en Reddit con comentarios en tiempo real y chat privado. PWA instalable.",
+      "description": "Proyecto del curso de Vue, Escuela Da Vinci. Desarrollador en solitario: una red social inspirada en Reddit con Vue y Firebase, con mi propio sistema de autenticación y autorización, comentarios en tiempo real y chat privado. PWA instalable.",
+      "role": "Desarrollador en solitario",
+      "date": "Septiembre 2024 - Diciembre 2024",
+      "highlights": [
+        {
+          "title": "Autenticación",
+          "decision": "Construí una red social inspirada en Reddit con Vue y Firebase (un BaaS, Backend as a Service, visto en el curso), con mi propio sistema de autenticación y autorización.",
+          "result": "Una autorización segura que protege las publicaciones de cada usuario frente a cambios de otros."
+        },
+        {
+          "title": "Funciones en tiempo real",
+          "decision": "Implementé el CRUD de publicaciones de texto y multimedia, comentarios en tiempo real y chat privado.",
+          "result": "PWA instalable con funciones en tiempo real, desplegada en Netlify."
+        }
+      ]
+    },
+    "flowventory": {
+      "title": "Flowventory",
+      "summary": "Aplicación de punto de venta para gestionar y controlar el inventario de tiendas de cualquier tipo.",
+      "description": "Una aplicación de punto de venta (POS) para gestionar, manejar y controlar el inventario de tiendas de cualquier tipo.",
+      "date": "En desarrollo",
+      "highlights": []
+    }
+  },
+  "blog": {
+    "title": "Blog",
+    "posts": [
+      {
+        "title": "Por qué el scroll de este sitio es horizontal",
+        "date": "2026-11-07"
+      },
+      {
+        "title": "Overscroll navigation con View Transitions",
+        "date": "2026-10-20"
+      },
+      {
+        "title": "Server y Client Components, sin magia",
+        "date": "2026-10-02"
+      },
+      {
+        "title": "Debounce: detectar el final de un gesto",
+        "date": "2026-09-15"
+      }
+    ]
+  },
+  "services": {
+    "title": "Servicios",
+    "intro": "Ofrezco soluciones web a medida de cada necesidad y presupuesto.",
+    "description": "Desde una landing page sencilla hasta aplicaciones web complejas, cada proyecto recibe la misma dedicación y profesionalidad.",
+    "quote": "Cada proyecto es único. Los precios son un punto de partida y se ajustan a la complejidad real del trabajo.",
+    "from": "desde",
+    "processTitle": "¿Cómo trabajamos juntos?",
+    "steps": [
+      {
+        "title": "Consulta inicial",
+        "description": "Hablamos de tu proyecto, tus objetivos y tus necesidades."
+      },
+      {
+        "title": "Propuesta",
+        "description": "Recojo tus comentarios y te presento una propuesta detallada."
+      },
+      {
+        "title": "Desarrollo",
+        "description": "Trabajo en tu proyecto con actualizaciones periódicas."
+      }
+    ],
+    "closing": {
+      "before": "¿No encuentras lo que buscas?",
+      "link": "Escríbeme",
+      "after": "y hablemos de tu proyecto. También ofrezco planes de mantenimiento mensual para sitios ya existentes."
+    },
+    "items": {
+      "tutoring": {
+        "title": "Tutoría personalizada",
+        "description": "Sesiones individuales para resolver dudas, revisar código o aprender nuevas tecnologías.",
+        "features": [
+          "Sesión de 1 hora por videollamada",
+          "Revisión de código en vivo",
+          "Preguntas y respuestas técnicas",
+          "Material de apoyo personalizado"
+        ]
+      },
+      "landing": {
+        "title": "Landing Page / Una sola página",
+        "description": "Un sitio de una sola página, ideal para presentar tu marca, producto o servicio.",
+        "features": [
+          "Diseño responsive",
+          "Optimización SEO básica",
+          "Formulario de contacto",
+          "Integración con redes sociales",
+          "Hosting incluido el primer año",
+          "30 días de soporte técnico"
+        ]
+      },
+      "corporate": {
+        "title": "Sitio web corporativo",
+        "description": "Un sitio completo de varias páginas para tu empresa, con todas las secciones esenciales.",
+        "features": [
+          "Hasta 5 páginas personalizadas",
+          "Panel de administración básico",
+          "Blog integrado",
+          "Optimización SEO avanzada",
+          "Formularios personalizados",
+          "Integración con Google Analytics"
+        ]
+      },
+      "blog": {
+        "title": "Blog personal",
+        "description": "Una plataforma de blog completa, con sistema de gestión de contenido y diseño a medida.",
+        "features": [
+          "Sistema de gestión de publicaciones",
+          "Categorías y etiquetas",
+          "Sistema de comentarios",
+          "Diseño a medida",
+          "Panel de administración",
+          "Optimizado para lectores"
+        ]
+      },
+      "ecommerce": {
+        "title": "E-commerce",
+        "description": "Una tienda online completa, con gestión de productos, carrito de compras y pasarela de pago.",
+        "features": [
+          "Catálogo de productos ilimitado",
+          "Carrito de compras",
+          "Pasarela de pago integrada",
+          "Gestión de inventario",
+          "Panel de administración completo",
+          "Envíos configurables",
+          "Notificaciones por correo",
+          "60 días de soporte técnico"
+        ]
+      },
+      "custom": {
+        "title": "Aplicación web a medida",
+        "description": "Desarrollo a medida para tus necesidades específicas. Ideal para proyectos únicos.",
+        "features": [
+          "Análisis de requisitos",
+          "Arquitectura a medida",
+          "Base de datos optimizada",
+          "API REST completa",
+          "Panel de administración",
+          "Documentación técnica",
+          "Despliegue en servidor",
+          "90 días de soporte técnico"
+        ]
+      }
+    }
+  }
+}

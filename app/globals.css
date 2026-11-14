@@ -1,13 +1,137 @@
 @import "tailwindcss";
 
+/* El modo oscuro se activa con la clase `.dark` en <html> (la pone el script del layout y
+   el ThemeToggle), no con la preferencia del sistema directamente. Así hay tres modos:
+   claro, oscuro y "seguir al sistema". Habilita las clases `dark:...` de Tailwind. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Variante `short:` para pantallas de poco alto (móviles pequeños o en horizontal). Como el
+   scroll es solo horizontal, lo que no cabe en vertical se recorta: con `short:` se compacta. */
+@custom-variant short (@media (max-height: 720px));
+
+/* Colores del tema. El fondo es de un solo color en toda la web: sale de --background. */
 :root {
-  --background: #272727;
-  --foreground: #171717;
+  color-scheme: light;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0.008 326);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0.008 326);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0.008 326);
+  --primary: oklch(0.514 0.222 16.935);
+  --primary-foreground: oklch(0.969 0.015 12.422);
+  --secondary: oklch(0.967 0.001 286.375);
+  --secondary-foreground: oklch(0.21 0.006 285.885);
+  --muted: oklch(0.96 0.003 325.6);
+  --muted-foreground: oklch(0.542 0.034 322.5);
+  --accent: oklch(0.96 0.003 325.6);
+  --accent-foreground: oklch(0.212 0.019 322.12);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0.005 325.62);
+  --input: oklch(0.922 0.005 325.62);
+  --ring: oklch(0.711 0.019 323.02);
+  --chart-1: oklch(0.81 0.117 11.638);
+  --chart-2: oklch(0.645 0.246 16.439);
+  --chart-3: oklch(0.586 0.253 17.585);
+  --chart-4: oklch(0.514 0.222 16.935);
+  --chart-5: oklch(0.455 0.188 13.697);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0.008 326);
+  --sidebar-primary: oklch(0.586 0.253 17.585);
+  --sidebar-primary-foreground: oklch(0.969 0.015 12.422);
+  --sidebar-accent: oklch(0.96 0.003 325.6);
+  --sidebar-accent-foreground: oklch(0.212 0.019 322.12);
+  --sidebar-border: oklch(0.922 0.005 325.62);
+  --sidebar-ring: oklch(0.711 0.019 323.02);
+
+  /* Zona segura. Una sola fuente de verdad: lo que está fijo en pantalla mide estas variables
+     y cada <Section> reserva ese mismo espacio, así el contenido nunca queda debajo de ello. */
+  --controls-height: 3rem; /* banda de arriba: selector de idioma y de tema */
+  --crumbs-height: 1.5rem; /* banda de las migas de pan, justo debajo de la anterior (solo la reservan las secciones que las muestran, ver Section) */
+  --nav-height: 3.5rem; /* banda de abajo: la barra del sub-menú (una sola fila) */
+  --section-gutter: 1.5rem; /* margen interior a los lados */
 }
 
+.dark {
+  color-scheme: dark;
+  --background: oklch(0.145 0.008 326);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.212 0.019 322.12);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.212 0.019 322.12);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.455 0.188 13.697);
+  --primary-foreground: oklch(0.969 0.015 12.422);
+  --secondary: oklch(0.274 0.006 286.033);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.263 0.024 320.12);
+  --muted-foreground: oklch(0.711 0.019 323.02);
+  --accent: oklch(0.263 0.024 320.12);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.542 0.034 322.5);
+  --chart-1: oklch(0.81 0.117 11.638);
+  --chart-2: oklch(0.645 0.246 16.439);
+  --chart-3: oklch(0.586 0.253 17.585);
+  --chart-4: oklch(0.514 0.222 16.935);
+  --chart-5: oklch(0.455 0.188 13.697);
+  --sidebar: oklch(0.21 0.006 285.885);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.645 0.246 16.439);
+  --sidebar-primary-foreground: oklch(0.969 0.015 12.422);
+  --sidebar-accent: oklch(0.263 0.024 320.12);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.542 0.034 322.5);
+}
+
+@media (width >= 40rem) {
+  :root {
+    --section-gutter: 2rem;
+  }
+}
+
+/* Expone los colores como utilidades de Tailwind: bg-background, text-muted-foreground,
+   border-border, bg-primary... */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --clip-circle: circle(50%);
@@ -26,6 +150,132 @@
   }
 }
 
+
+/* Transición entre vistas: la vista vieja sale por un lado y la nueva entra por el otro,
+   a pantalla completa, para que parezca que el pergamino sigue avanzando. */
+::view-transition-old(.nav-forward) {
+  animation: 500ms ease-in-out both slide-out-left;
+}
+::view-transition-new(.nav-forward) {
+  animation: 500ms ease-in-out both slide-in-right;
+}
+::view-transition-old(.nav-back) {
+  animation: 500ms ease-in-out both slide-out-right;
+}
+::view-transition-new(.nav-back) {
+  animation: 500ms ease-in-out both slide-in-left;
+}
+
+@keyframes slide-out-left {
+  to { translate: -100vw; }
+}
+@keyframes slide-in-right {
+  from { translate: 100vw; }
+}
+@keyframes slide-out-right {
+  to { translate: 100vw; }
+}
+@keyframes slide-in-left {
+  from { translate: -100vw; }
+}
+
+/* El nav y los controles quedan quietos y por encima mientras las vistas se deslizan
+   (si no, las vistas los tapan). */
+::view-transition-group(site-nav),
+::view-transition-group(site-controls),
+::view-transition-group(site-breadcrumbs) {
+  animation: none;
+  z-index: 100;
+}
+::view-transition-old(site-nav),
+::view-transition-old(site-controls),
+::view-transition-old(site-breadcrumbs) {
+  display: none;
+}
+::view-transition-new(site-nav),
+::view-transition-new(site-controls),
+::view-transition-new(site-breadcrumbs) {
+  animation: none;
+}
+
+/* Texto de las migas de pan que se va "coloreando" (ver Breadcrumbs): degradado duro, primario
+   hasta --fill (que cambia con el scroll) y gris después, recortado al texto. */
+.crumb-fill {
+  --fill: 0%;
+  background-image: linear-gradient(
+    to right,
+    color-mix(in oklab, var(--primary) 85%, var(--foreground)) var(--fill),
+    var(--muted-foreground) var(--fill)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Splash de entrada (ver HorizontalScroller). El <main> cambia de estado con data-intro:
+   - "pending": llega así del servidor; el contenido está oculto (sin parpadeo antes del JS).
+   - "run": cada hijo del contenido de una sección (y cada tarjeta de una fila marcada con
+     data-stagger-children) entra con intro-in, escalonado según su posición (--intro-index).
+   - sin atributo: terminó y todo queda visible.
+   Se anima con CSS y no con JS a propósito: así no se tocan los elementos mientras React los hidrata. */
+main[data-intro="pending"] > section > div > * {
+  opacity: 0;
+}
+main[data-intro="run"] > section > div > :not([data-intro-skip], [data-stagger-children]),
+main[data-intro="run"] > section > div > [data-stagger-children] > * {
+  animation: intro-in 800ms cubic-bezier(0.215, 0.61, 0.355, 1) both;
+  animation-delay: calc(250ms + var(--intro-index, 0) * 100ms);
+}
+/* Orden de entrada: el índice (0, 1, 2...) de cada hijo. 12 bastan para estas vistas. */
+main > section > div > :nth-child(1), main > section > div > [data-stagger-children] > :nth-child(1) { --intro-index: 0; }
+main > section > div > :nth-child(2), main > section > div > [data-stagger-children] > :nth-child(2) { --intro-index: 1; }
+main > section > div > :nth-child(3), main > section > div > [data-stagger-children] > :nth-child(3) { --intro-index: 2; }
+main > section > div > :nth-child(4), main > section > div > [data-stagger-children] > :nth-child(4) { --intro-index: 3; }
+main > section > div > :nth-child(5), main > section > div > [data-stagger-children] > :nth-child(5) { --intro-index: 4; }
+main > section > div > :nth-child(6), main > section > div > [data-stagger-children] > :nth-child(6) { --intro-index: 5; }
+main > section > div > :nth-child(7), main > section > div > [data-stagger-children] > :nth-child(7) { --intro-index: 6; }
+main > section > div > :nth-child(8), main > section > div > [data-stagger-children] > :nth-child(8) { --intro-index: 7; }
+main > section > div > :nth-child(9), main > section > div > [data-stagger-children] > :nth-child(9) { --intro-index: 8; }
+main > section > div > :nth-child(10), main > section > div > [data-stagger-children] > :nth-child(10) { --intro-index: 9; }
+main > section > div > :nth-child(11), main > section > div > [data-stagger-children] > :nth-child(11) { --intro-index: 10; }
+main > section > div > :nth-child(12), main > section > div > [data-stagger-children] > :nth-child(12) { --intro-index: 11; }
+@keyframes intro-in {
+  from { opacity: 0; translate: 0 28px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+/* Aviso sobre los botones de contacto (ver Nudge): un meneo corto y leve. Solo usa translate y
+   scale, que no mueven nada de alrededor. */
+[data-nudge="on"] {
+  animation: attention 900ms ease-in-out;
+}
+@keyframes attention {
+  0%, 100% { translate: 0 0; scale: 1; }
+  15% { translate: -3px 0; scale: 1.04; }
+  30% { translate: 3px 0; scale: 1.04; }
+  45% { translate: -2px 0; scale: 1.04; }
+  60% { translate: 2px 0; scale: 1.03; }
+  80% { translate: 0 0; scale: 1.02; }
+}
+
+/* Vaivén de las flechas de los enlaces de final de vista (en táctil, donde no hay hover). */
+@keyframes nudge-forward {
+  0%, 60%, 100% { translate: 0; }
+  30% { translate: 6px; }
+}
+@keyframes nudge-back {
+  0%, 60%, 100% { translate: 0; }
+  30% { translate: -6px; }
+}
+
+/* Quien tiene activado "reducir movimiento" en su sistema ve el cambio directo. */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+  }
+}
 
 body {
   background: var(--background);
