@@ -4,7 +4,7 @@
 export const contact = {
   email: "contact@carlosmarquina.dev",
   // Teléfono para WhatsApp, con prefijo de país y sin "+" ni espacios (formato de wa.me).
-  whatsappNumber: "34663143797",
+  whatsappNumber: "34745030680",
   github: "https://github.com/marquinacarlos",
   linkedin: "https://www.linkedin.com/in/marquinacarlos",
 };
